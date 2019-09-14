@@ -112,7 +112,7 @@ export default {
         padding: 13px 66px;
         font-weight: bold;
         font-size: 18px;
-        line-height: 23px;
+        line-height: 0;
         letter-spacing: 0.3px;
         transition: 200ms;
 
