@@ -56,7 +56,26 @@ export default {
     identifierCorrect: function () {
       // for regular
       if (this.identifier) {
-        return true
+        let string = this.identifier
+        let regexp = ''
+        switch (this.type.name) {
+          case 'VIN':
+            regexp = /\b[(A-H|J-N|P|R-Z|0-9)]{17}\b/
+            break
+          case 'BODY':
+            regexp = /^[A-Za-z0-9- ]{7,15}$/m
+            break
+          case 'ГРЗ':
+            regexp = /^[^АВЕКМНОРСТУХ]{1}[0-9]{3}[^АВЕКМНОРСТУХ]{2}[0-9]{2,3}$/
+            break
+        }
+        let result = regexp.exec(string)
+        if (result) {
+          return true
+        } else {
+          this.errorShow = true
+          return false
+        }
       } else {
         return false
       }
