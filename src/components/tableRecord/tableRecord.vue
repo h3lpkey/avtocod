@@ -48,7 +48,10 @@ export default {
   computed: {
     reports () {
       let data = this.$store.state.reports
-      return data.reverse()
+      data.sort(function (a, b) {
+        return b.id - a.id
+      })
+      return data
     }
   },
   methods: {
