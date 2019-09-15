@@ -1,8 +1,13 @@
 .card-report-table {
     .report-table {
-        width: 100%;
-        margin-top: 20px;
+        width: calc(100% + 30px);
+        margin: 20px -15px;
         border-collapse: collapse;
+
+        @media (max-width: 550px) {
+            width: 100%;
+            margin: 20px 0;
+        }
 
         .report-table-header {
             height: 30px;
@@ -17,6 +22,15 @@
                 line-height: 18px;
                 letter-spacing: 0.2px;
                 color: #000000;
+                &:first-child {
+                    padding-left: 15px;
+                }
+                &:last-child {
+                    padding-right: 15px;
+                }
+                @media (max-width: 850px) {
+                    padding: 7px!important;
+                }
             }
         }
 
@@ -32,12 +46,6 @@
             border-top: 1px solid #DFE0EB;
             transition: 200ms;
 
-            td {
-                @media (max-width: 850px) {
-                    padding: 7px;
-                }
-            }
-
             @media (max-width: 850px) {
                 display: flex;
                 flex-wrap: wrap;
@@ -46,12 +54,40 @@
                 padding: 15px;
             }
 
+            td {
+                &:first-child {
+                    padding-left: 15px;
+                }
+                &:last-child {
+                    padding-right: 15px;
+                }
+                @media (max-width: 850px) {
+                    padding: 7px!important;
+                }
+            }
+
             &:last-child {
                 border-bottom: 1px solid #DFE0EB;
             }
 
             &:hover {
                 background-color: #F7F8FF;
+            }
+            .type {
+                @media (max-width: 550px) {
+                    color: #838383;
+                }
+            }
+
+            .date {
+                @media (max-width: 550px) {
+                    font-style: italic;
+                    font-weight: normal;
+                    font-size: 12px;
+                    line-height: 20px;
+                    letter-spacing: 0.2px;
+                    color: #838383;
+                }
             }
 
             .status {
@@ -79,12 +115,21 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                height: 45px;
+
+                @media (max-width: 850px) {
+                    height: 30px;
+                }
 
                 .icon-trash {
                     cursor: pointer;
                     width: 24px;
                     height: 24px;
-                    background-image: url("/src/assets/trash.svg");
+                    background-image: url("../../assets/trash.svg");
+                }
+
+                &:hover .icon-trash {
+                    background-image: url("../../assets/trash__red.svg");
                 }
             }
         }

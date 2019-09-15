@@ -55,11 +55,11 @@
                     width: 22px;
                     height: 18px;
                     transition: 200ms;
-                    background-image: url("/src/assets/array_bot.svg");
+                    background-image: url("../../assets/array_bot.svg");
                 }
 
                 &:hover .triangle {
-                    background-image: url("/src/assets/array_bot__blue.svg");
+                    background-image: url("../../assets/array_bot__blue.svg");
                 }
             }
 

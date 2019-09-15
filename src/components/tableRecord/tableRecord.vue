@@ -11,8 +11,8 @@
       </tr>
       <tr class="report-table-row" v-for="report in reports" v-bind:key="report.id">
         <td>{{report.identifier}}</td>
-        <td>{{reportType(report.type)}}</td>
-        <td>{{report.date}}</td>
+        <td class="type">{{reportType(report.type)}}</td>
+        <td class="date">{{report.date}}</td>
         <td>
           <div :class="'status status__' + reportStatus(report.status)">
             {{reportStatus(report.status)}}
