@@ -1,0 +1,91 @@
+.card-report-table {
+    .report-table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+
+        .report-table-header {
+            height: 30px;
+            @media (max-width: 850px) {
+                display: none;
+            }
+
+            th {
+                text-align: left;
+                font-weight: bold;
+                font-size: 14px;
+                line-height: 18px;
+                letter-spacing: 0.2px;
+                color: #000000;
+            }
+        }
+
+        .report-table-row {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.2px;
+            color: #252733;
+            cursor: pointer;
+            height: 50px;
+            border-top: 1px solid #DFE0EB;
+            transition: 200ms;
+
+            td {
+                @media (max-width: 850px) {
+                    padding: 7px;
+                }
+            }
+
+            @media (max-width: 850px) {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                height: unset;
+                padding: 15px;
+            }
+
+            &:last-child {
+                border-bottom: 1px solid #DFE0EB;
+            }
+
+            &:hover {
+                background-color: #F7F8FF;
+            }
+
+            .status {
+                padding: 5px 10px;
+                width: 90px;
+                border-radius: 100px;
+                text-align: center;
+                color: #fff;
+
+                &__error {
+                    background-color: #F12B2C;
+                }
+
+                &__progress {
+                    background-color: #F1A22B;
+                }
+
+                &__done {
+                    background-color: #29CC97;
+                }
+            }
+
+            .icon-box {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .icon-trash {
+                    cursor: pointer;
+                    width: 24px;
+                    height: 24px;
+                    background-image: url("/src/assets/trash.svg");
+                }
+            }
+        }
+    }
+}
