@@ -45,6 +45,10 @@
             padding: 0 15px;
             transition: 200ms;
 
+            &__error {
+                border: 2px solid #F12B2C;
+            }
+
             &-drop--result {
                 display: flex;
                 justify-content: space-between;

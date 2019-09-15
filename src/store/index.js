@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import moment from 'moment'
 
 Vue.use(Vuex)
 
@@ -123,6 +124,18 @@ export default new Vuex.Store({
   mutations: {
     removeReport (state, report) {
       state.reports.splice(state.reports.indexOf(report), 1)
+    },
+    addReport (state, { identifier: identifierReport, type: typeReport }) {
+      let date = Date.now()
+      let randomStatus = state.statusReports[Math.floor((Math.random() * state.statusReports.length))]
+      let record = {
+        id: state.reports[state.reports.length - 1].id + 1,
+        identifier: identifierReport,
+        type: typeReport.id,
+        date: moment(date).format('DD.MM.YYYY, h:mm:ss'),
+        status: randomStatus.id
+      }
+      state.reports.push(record)
     }
   }
 })
