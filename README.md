@@ -1,7 +1,8 @@
 # avtocod
 
 Тестовое задание для [avtocod](https://avtocod.ru/), само задание 
-[тут](https://github.com/avtocod/frontend-developer-test-task), а потыкать его можно [тут](https://h3lpkey.github.io/avtocod/)
+[тут](https://github.com/avtocod/frontend-developer-test-task),
+ а потыкать его можно [тут](https://h3lpkey.github.io/avtocod/)
 
 План разработки составил следующий:
 - [x] иницилизация и подключение (vue, vue-router, vuex, eslint)

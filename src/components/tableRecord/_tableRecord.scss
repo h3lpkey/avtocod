@@ -73,7 +73,15 @@
             &:hover {
                 background-color: #F7F8FF;
             }
+            .identifier {
+                @media (max-width: 850px) {
+                    width: 150px;
+                }
+            }
             .type {
+                @media (max-width: 850px) {
+                    width: 40px;
+                }
                 @media (max-width: 550px) {
                     color: #838383;
                 }

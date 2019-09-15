@@ -1,11 +1,12 @@
 <template>
   <div class="card card-report-table">
-<!-- todo: не понял почему >= работает, а <= нет-->
+    <!-- todo: не понял почему >= работает, а <= нет-->
     <div v-if="reports >= 0">
       <h1 class="card-title">У вас нет отчётов</h1>
       <p>Создай отчёт, или тыкни кнопку ниже</p>
       <button class="btn btn__yellow"
-              v-on:click="setDefaultReports">Вставить тестовые данные</button>
+              v-on:click="setDefaultReports">Вставить тестовые данные
+      </button>
     </div>
     <div v-else>
       <h1 class="card-title">Все отчёты</h1>
@@ -20,7 +21,7 @@
         <tr class="report-table-row"
             v-for="report in reports"
             v-bind:key="report.id">
-          <td>{{report.identifier}}</td>
+          <td class="identifier">{{report.identifier}}</td>
           <td class="type">{{reportType(report.type)}}</td>
           <td class="date">{{report.date}}</td>
           <td>
