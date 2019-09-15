@@ -9,14 +9,16 @@
         <th>Статус</th>
         <th></th>
       </tr>
-      <tr class="report-table-row">
-        <td>4F2YU08102KM26251</td>
-        <td>VIN</td>
-        <td>26.05.2019 10:00:00</td>
+      <tr class="report-table-row" v-for="report in reports" v-bind:key="report.id">
+        <td>{{report.identifier}}</td>
+        <td>{{reportType(report.type)}}</td>
+        <td>{{report.date}}</td>
         <td>
-          <div class="status status__error">ERROR</div>
+          <div :class="'status status__' + reportStatus(report.status)">
+            {{reportStatus(report.status)}}
+          </div>
         </td>
-        <td class="icon-box""><span class="icon icon-trash"></span></td>
+        <td class="icon-box"><span class="icon icon-trash"></span></td>
       </tr>
     </table>
   </div>
@@ -25,6 +27,27 @@
 <script>
 import './_tableRecord.scss'
 export default {
-  props: {}
+  props: {},
+  computed: {
+    reports () {
+      return this.$store.state.records
+    }
+  },
+  methods: {
+    reportStatus (statusId) {
+      return this.$store.state.statusRecords.find((item) => {
+        if (item.id === statusId) {
+          return item['status']
+        }
+      }).status
+    },
+    reportType (typeId) {
+      return this.$store.state.typeRecords.find((item) => {
+        if (item.id === typeId) {
+          return item
+        }
+      }).type
+    }
+  }
 }
 </script>
