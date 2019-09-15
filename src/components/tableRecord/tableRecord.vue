@@ -18,21 +18,23 @@
           <th>Статус</th>
           <th></th>
         </tr>
-        <tr class="report-table-row"
-            v-for="report in reports"
-            v-bind:key="report.id">
-          <td class="identifier">{{report.identifier}}</td>
-          <td class="type">{{reportType(report.type)}}</td>
-          <td class="date">{{report.date}}</td>
-          <td>
-            <div :class="'status status__' + reportStatus(report.status)">
-              {{reportStatus(report.status)}}
-            </div>
-          </td>
-          <td class="icon-box" v-on:click="removeReport(report)">
-            <span class="icon icon-trash"></span>
-          </td>
-        </tr>
+        <transition-group tag="tbody" name="fade" mode="out-in">
+          <tr class="report-table-row"
+              v-for="report in reports"
+              v-bind:key="report.id">
+            <td class="identifier">{{report.identifier}}</td>
+            <td class="type">{{reportType(report.type)}}</td>
+            <td class="date">{{report.date}}</td>
+            <td>
+              <div :class="'status status__' + reportStatus(report.status)">
+                {{reportStatus(report.status)}}
+              </div>
+            </td>
+            <td class="icon-box" v-on:click="removeReport(report)">
+              <span class="icon icon-trash"></span>
+            </td>
+          </tr>
+        </transition-group>
       </table>
     </div>
   </div>
