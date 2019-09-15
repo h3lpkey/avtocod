@@ -18,7 +18,7 @@
             <ul class="input-items" v-show="showTypes">
               <li class="input-item"
                   v-on:click="setType(type)"
-                  v-for="type in types" v-bind:key="type.id">
+                  v-for="type in typesReports" v-bind:key="type.id">
                 {{type.name}}
               </li>
             </ul>
@@ -37,21 +37,12 @@ export default {
   data: function () {
     return {
       showTypes: false,
-      type: 'ГРЗ',
-      types: [
-        {
-          id: 1,
-          name: 'ГРЗ'
-        },
-        {
-          id: 2,
-          name: 'VIN'
-        },
-        {
-          id: 3,
-          name: 'BODY'
-        }
-      ]
+      type: 'ГРЗ'
+    }
+  },
+  computed: {
+    typesReports: function () {
+      return this.$store.state.typeReports
     }
   },
   methods: {

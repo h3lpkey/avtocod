@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    records: [
+    reports: [
       {
         id: 1,
         identifier: '4F2YU08102KM26251',
@@ -91,21 +91,21 @@ export default new Vuex.Store({
         status: 3
       }
     ],
-    typeRecords: [
+    typeReports: [
       {
         id: 1,
-        type: 'VIN'
+        name: 'VIN'
       },
       {
         id: 2,
-        type: 'BODY'
+        name: 'BODY'
       },
       {
         id: 3,
-        type: 'ГРЗ'
+        name: 'ГРЗ'
       }
     ],
-    statusRecords: [
+    statusReports: [
       {
         id: 1,
         status: 'error'
@@ -119,5 +119,10 @@ export default new Vuex.Store({
         status: 'done'
       }
     ]
+  },
+  mutations: {
+    removeReport (state, report) {
+      state.reports.splice(state.reports.indexOf(report), 1)
+    }
   }
 })
