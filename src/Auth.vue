@@ -4,20 +4,53 @@
       <h3 class="tittle tittle__blue">Авторизация</h3>
       <div class="input-box">
         <label for="login" class="auth-label">Логин</label>
-        <input type="text" id="login" class="auth-input" placeholder="username"/>
+        <input type="text"
+               autofocus
+               id="login"
+               class="auth-input"
+               @change="error = false"
+               v-model="login"
+               placeholder="username"/>
       </div>
       <div class="input-box">
         <label for="password" class="auth-label">Пароль</label>
-        <input type="text" id="password" class="auth-input"/>
+        <input type="password"
+               id="password"
+               @change="error = false"
+               v-model="password"
+               v-on:keyup.enter="auth"
+               class="auth-input"/>
       </div>
-      <button class="btn btn__yellow">Войти</button>
+      <button class="btn btn__yellow" v-on:click="auth">Войти</button>
+      <p class="error" v-show="error">Wrong username or login</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: {}
+  props: {},
+  data: function () {
+    return {
+      login: 'username',
+      password: 'password',
+      error: false
+    }
+  },
+  methods: {
+    auth: function () {
+      if (this.login === 'username' && this.password === 'password') {
+        localStorage.authData = JSON.stringify({
+          login: 'username',
+          password: 'password',
+          lastAuth: Date.now()
+        })
+        this.$router.push({ path: '/' })
+      } else {
+        this.error = true
+      }
+    }
+  }
 }
 </script>
 
@@ -33,6 +66,7 @@ export default {
     .login-box {
       width: 460px;
       height: 400px;
+      position: relative;
       padding: 30px 0 35px;
       background: #fff;
       border: 1px solid #409CFF;
@@ -129,6 +163,12 @@ export default {
           cursor: pointer;
           box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
         }
+      }
+
+      .error {
+        position: absolute;
+        bottom: 75px;
+        color: red;
       }
     }
   }

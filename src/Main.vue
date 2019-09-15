@@ -7,7 +7,7 @@
           <span class="icon icon-record"></span>
           <a href="#">Список отчётов</a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item" v-on:click="loguot">
           <span class="icon icon-quit"></span>
           <a href="#">Выход</a>
         </li>
@@ -33,7 +33,7 @@
                 <ul class="input-items" v-show="showTypes">
                   <li class="input-item"
                       v-on:click="setType(type)"
-                      v-for="type in types" v-bind:key="type">
+                      v-for="type in types" v-bind:key="type.id">
                     {{type.name}}
                   </li>
                 </ul>
@@ -77,12 +77,15 @@ export default {
       type: 'ГРЗ',
       types: [
         {
+          id: 1,
           name: 'ГРЗ'
         },
         {
+          id: 2,
           name: 'VIN'
         },
         {
+          id: 3,
           name: 'BODY'
         }
       ]
@@ -95,6 +98,10 @@ export default {
     setType: function (type) {
       this.type = type.name
       this.showTypes = false
+    },
+    loguot: function () {
+      localStorage.authData = ''
+      this.$router.push({ path: '/login' })
     }
   }
 }

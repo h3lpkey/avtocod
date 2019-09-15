@@ -22,5 +22,24 @@ const router = new VueRouter({
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  mounted () {
+    // проверяем авторизацию
+    // `catch` disabled error log
+    if (localStorage.authData) {
+      // Проверка на просроченную авторизацию
+      let lastAuth = JSON.parse(localStorage.authData).lastAuth
+      let day = 3600 * 24 * 1000
+      let today = Date.now()
+
+      lastAuth = lastAuth + day
+      if (lastAuth - today >= 0) {
+        this.$router.push({ path: '/' }).catch(err => {
+        })
+      }
+    } else {
+      this.$router.push({ path: '/login' }).catch(err => {
+      })
+    }
+  }
 }).$mount('#app')
