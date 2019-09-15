@@ -1,9 +1,11 @@
 <template>
   <div class="card card-report-table">
-<!--    не понял почему >= работает, а <= нет-->
+<!-- todo: не понял почему >= работает, а <= нет-->
     <div v-if="reports >= 0">
       <h1 class="card-title">У вас нет отчётов</h1>
-      <p>Создай отчёт, тогда покажу</p>
+      <p>Создай отчёт, или тыкни кнопку ниже</p>
+      <button class="btn btn__yellow"
+              v-on:click="setDefaultReports">Вставить тестовые данные</button>
     </div>
     <div v-else>
       <h1 class="card-title">Все отчёты</h1>
@@ -15,7 +17,9 @@
           <th>Статус</th>
           <th></th>
         </tr>
-        <tr class="report-table-row" v-for="report in reports" v-bind:key="report.id">
+        <tr class="report-table-row"
+            v-for="report in reports"
+            v-bind:key="report.id">
           <td>{{report.identifier}}</td>
           <td class="type">{{reportType(report.type)}}</td>
           <td class="date">{{report.date}}</td>
@@ -40,7 +44,8 @@ export default {
   props: {},
   computed: {
     reports () {
-      return this.$store.state.reports
+      let data = this.$store.state.reports
+      return data.reverse()
     }
   },
   methods: {
@@ -62,6 +67,9 @@ export default {
       if (confirm('RLY?')) {
         this.$store.commit('removeReport', report)
       }
+    },
+    setDefaultReports () {
+      this.$store.commit('setDefaultReports')
     }
   }
 }

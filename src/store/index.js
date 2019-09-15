@@ -2,98 +2,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import moment from 'moment'
 import createPersistedState from 'vuex-persistedstate'
+import defaultReports from './defaultReports'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
-    reports: [
-      {
-        id: 1,
-        identifier: '4F2YU08102KM26251',
-        type: 1,
-        date: '26.05.2019 10:00:00',
-        status: 1
-      },
-      {
-        id: 2,
-        identifier: 'A007AA197',
-        type: 3,
-        date: '26.05.2019 10:00:00',
-        status: 2
-      },
-      {
-        id: 3,
-        identifier: 'XYZ12-3456789',
-        type: 2,
-        date: '26.05.2019 10:00:00',
-        status: 3
-      },
-      {
-        id: 4,
-        identifier: '4F2YU08102KM26251',
-        type: 1,
-        date: '26.05.2019 10:00:00',
-        status: 1
-      },
-      {
-        id: 5,
-        identifier: 'A007AA197',
-        type: 3,
-        date: '26.05.2019 10:00:00',
-        status: 2
-      },
-      {
-        id: 6,
-        identifier: 'XYZ12-3456789',
-        type: 2,
-        date: '26.05.2019 10:00:00',
-        status: 3
-      },
-      {
-        id: 7,
-        identifier: '4F2YU08102KM26251',
-        type: 1,
-        date: '26.05.2019 10:00:00',
-        status: 1
-      },
-      {
-        id: 8,
-        identifier: 'A007AA197',
-        type: 3,
-        date: '26.05.2019 10:00:00',
-        status: 2
-      },
-      {
-        id: 9,
-        identifier: 'XYZ12-3456789',
-        type: 2,
-        date: '26.05.2019 10:00:00',
-        status: 3
-      },
-      {
-        id: 10,
-        identifier: '4F2YU08102KM26251',
-        type: 1,
-        date: '26.05.2019 10:00:00',
-        status: 1
-      },
-      {
-        id: 11,
-        identifier: 'A007AA197',
-        type: 3,
-        date: '26.05.2019 10:00:00',
-        status: 2
-      },
-      {
-        id: 12,
-        identifier: 'XYZ12-3456789',
-        type: 2,
-        date: '26.05.2019 10:00:00',
-        status: 3
-      }
-    ],
+    reports: defaultReports,
     typeReports: [
       {
         id: 1,
@@ -130,14 +46,24 @@ export default new Vuex.Store({
     addReport (state, { identifier: identifierReport, type: typeReport }) {
       let date = Date.now()
       let randomStatus = state.statusReports[Math.floor((Math.random() * state.statusReports.length))]
+      let id = 0
+      state.reports.forEach((item) => {
+        if (item.id > id) {
+          id = item.id + 1
+        }
+      })
       let record = {
-        id: state.reports[state.reports.length - 1].id + 1,
+        id: id,
         identifier: identifierReport,
         type: typeReport.id,
-        date: moment(date).format('DD.MM.YYYY, h:mm:ss'),
+        date: moment(date).format('DD.MM.YYYY h:mm:ss'),
         status: randomStatus.id
       }
       state.reports.push(record)
+    },
+    setDefaultReports (state) {
+      // todo: почему отрабатывает только после релоуда страницы?
+      state.reports = defaultReports
     }
   }
 })
